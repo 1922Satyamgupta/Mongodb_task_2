@@ -21,16 +21,16 @@
     <?php
     foreach ($edit_data['metafield'] as $a)
     {
-        echo "label: <input type='text' name='label' placeholder=".$a['label']."><br><br>";
-        echo "value: <input type='text' name='value' placeholder=".$a['value']."><br><br>";
+        echo "label: <input type='text' name='label[]' placeholder=".$a['label']."><br><br>";
+        echo "value: <input type='text' name='value[]' placeholder=".$a['value']."><br><br>";
     } 
     ?>
     <br>
     <?php
     foreach ($edit_data['variation'] as $a)
     {
-        echo "Attribute Name: <input type='text' name='attr_name' placeholder=".$a['attr_name']."><br><br>";
-        echo "Attribute value: <input type='text' name='attr_value' placeholder=".$a['attr_value']."><br><br>";
+        echo "Attribute Name: <input type='text' name='attr_name[]' placeholder=".$a['attr_name']."><br><br>";
+        echo "Attribute value: <input type='text' name='attr_value[]' placeholder=".$a['attr_value']."><br><br>";
     } 
     ?>
     <input type="submit" value="Update">

@@ -72,12 +72,12 @@ class ProductController extends Controller
         $result->price = $this->request->get('price');
         $result->stock = $this->request->get('stock');
         for($p =0 ; $p <count($result->metafield) ; $p++) {
-            $result->metafield[$p]["label"] = $this->request->get('label') ;
-            $result->metafield[$p]["value"] = $this->request->get('value') ;
+            $result->metafield[$p]["label"] = $this->request->get('label')[$p] ;
+            $result->metafield[$p]["value"] = $this->request->get('value')[$p] ;
         }
         for($p =0 ; $p <count($result->variation) ; $p++) {
-            $result->variation[$p]["attr_name"] = $this->request->get('attr_name') ;
-            $result->variation[$p]["attr_value"] = $this->request->get('attr_value') ;
+            $result->variation[$p]["attr_name"] = $this->request->get('attr_name')[$p] ;
+            $result->variation[$p]["attr_value"] = $this->request->get('attr_value')[$p] ;
         }
         $save = $collection->updateOne(["_id" => new \MongoDB\BSON\ObjectID($id)], ['$set'=>$result]);
         // $this->response->redirect('product/view');
