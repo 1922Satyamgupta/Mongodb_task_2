@@ -1,0 +1,187 @@
+<?php
+// echo "-----------------------------";
+// print_r($products);
+// echo "<pre>";
+// // print_r($products->toArray());
+
+// foreach($products as $a)
+// {
+//    print_r($products->metafield);
+// }
+// die;
+?>
+<style>
+   table {
+      width: 700px;
+      text-align: center;
+      border: 1px solid #fff;
+      border-spacing: 1px;
+      font-family: 'Cairo', sans-serif;
+      margin: auto;
+   }
+
+   caption {
+      font-weight: bold;
+   }
+
+   table td {
+      padding: 10px;
+      background-color: #eee;
+   }
+
+   table th {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+   }
+
+   img {
+      width: 90px;
+      height: 90px;
+   }
+
+   .view,
+   .delete {
+      border: none;
+      padding: 5px 10px;
+      color: #fff;
+      font-weight: bold;
+   }
+
+   .view {
+      background-color: #03A9F4;
+   }
+
+   .delete {
+      background-color: #E91E63;
+   }
+
+   .tablefoot {
+      padding: 0;
+      border-bottom: 3px solid #009688;
+   }
+   .overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;print_r($products->toArray()
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;Attribute value 0 = 44F;
+}
+.popup .content {
+  max-height: 100%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}
+</style>
+<body>
+<h2 style="margin-left: 40%;">Product Lists</h2>
+<table id="myTable">
+   <caption><a href="/product/">Home</a></caption>
+   <form action="/product/view" method="post">
+   <span><label for="search" style="margin-left: 20%;">Search:</label></span>
+   <span><input type="text" id="search" name="search" placeholder="Search for names.." title="Type in a name"></span>
+   <span><input type="submit" value="search"></span>   
+
+   <thead>
+      <tr>
+         <th>Photo</th>
+         <th>Product Name</th>
+         <th>Category Name</th>
+         <th>Price</th>
+         <th>Stock</th>
+         <th>Action</th>
+      </tr>
+   </thead>
+   <tbody>
+      <?php 
+    //  $i =0 ;
+      foreach ($products as $key) { ?>
+         <tr>
+            <td><img src="https://i.postimg.cc/yYYd1HV1/katara.jpg" alt="img"></td>
+            <td><?php echo $key['p_name']; ?></td>
+            <td><?php echo $key['cat_name']; ?></td>
+            <td><?php echo $key['price']; ?></td>
+            <td><?php echo $key['stock']; ?></td>
+            <td>
+               <a class="button" href="#<?php echo $key['p_name']?>">view</a>
+              <a href="<?php echo '/product/delete?id='.$key['_id'];?>">del</a>
+              <a href="<?php echo '/product/edit?id='.$key['_id'];?>">edit</a>
+
+              <?php
+                   for($j =0 ; $j<count($key['metafield']) ; $j++){ 
+                   ?>
+
+
+          <div id="<?php echo $key["p_name"] ?>" class="overlay">
+	<div class="popup">
+		
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+      <?php for($p =0 ; $p <count($key['metafield']) ; $p++){ ?>
+			    <h2>METAFIELDS</h2>
+            <?php  echo "Label : ".$key['metafield'][$p]["label"] . "<br>";?>  
+            <?php  echo "Value : ".$key['metafield'][$p]["value"] . "<br>";}?>
+             <?php echo "<br>"; ?>
+            <?php for($p =0 ; $p <count($key['variation']) ; $p++){ ?>
+               <h2>VARIATIONS</h2>
+             <?php  echo "Attribute Name : ".$key['variation'][$p]["attr_name"] . "<br>";?>  
+              <?php  echo "Attribute Value : ".$key['variation'][$p]["attr_value"] . "<br>";}?>
+       
+            
+		</div>
+	</div>
+</div>
+            </td>
+         </tr>
+      <?php } }?>
+
+   </tbody>
+   <tfoot>
+      <td colspan="5" class="tablefoot"></td>
+   </tfoot>
+   </form>
+</table>
+
+</body>

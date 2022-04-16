@@ -1,0 +1,202 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Attractive Login/Registeration Modal using Bootstrap 4</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    .modal{
+  .modal-content.form-wrapper{
+    width: 100%;
+    height: 470px;
+    position: relative;
+    background: #f2f3f5;
+    .icon-box{
+      height: 50px;
+      width: 50px;
+      background: #007bff;
+      color: #f2f3f5;
+      margin: 0 auto;
+      position: absolute;
+      top: -4%;
+      left: -2%;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .close-box{
+      height: 50px;
+      width: 50px;
+      background: #f00;
+      color: #f2f3f5;
+      margin: 0 auto;
+      position: absolute;
+      top: -4%;
+      right: -2%;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    .btn-info{
+      transition: all 500ms;
+      background: #007bff;
+      color: #fff;
+      &:hover{
+        background: transparent;
+        border-color: #007bff;
+        color: #007bff;
+      }
+    }
+    .social-login{
+      a{
+        transition: all 500ms;
+        display: inline-block;
+        height: 40px;
+        width: 40px;
+        margin: 0 auto;
+        background: #007bff;
+        color: #fff;
+        border-radius: 50%;
+        margin: 0 auto;
+        padding-top: 7px;
+        border: 1px solid transparent;
+        &.google{
+          background: #db4437;
+          &:hover{
+            border-color: #db4437;
+            color: #db4437;
+            background: transparent;
+          }
+        }
+        &.facebook{
+          background: #4267b2;
+          &:hover{
+            border-color: #4267b2;
+            color: #4267b2;
+            background: transparent;
+          }
+        }
+        &.twitter{
+          background: #1da1f2;
+          &:hover{
+            border-color: #1da1f2;
+            color: #1da1f2;
+            background: transparent;
+          }
+        }
+        &.github{
+          background: #24292e;
+          &:hover{
+            border-color: #24292e;
+            color: #24292e;
+            background: transparent;
+          }
+        }
+      }
+    }
+  }
+}
+</style>
+</head>
+<body>
+  <a href="#login" class="nav-link" data-toggle="modal"><i class="fa fa-sign-in"></i> Login</a>
+  <a href="#register" class="nav-link" data-toggle="modal"><i class="fa fa-user-plus"></i> Register</a>
+  <!-- Login Modal -->
+  <div class="modal fade" id="login">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content form-wrapper">
+        <div class="close-box" data-dismiss="modal">
+          <i class="fa fa-times fa-2x"></i>
+        </div>
+        <div class="container-fluid mt-5">
+          <form action="/index/login" method="post" id="LoginForm">
+            <div class="form-group text-center">
+              <h4>Login Form</h4>
+              <h6>Enter your credentials</h6>
+            </div>
+            <div class="form-group" style="position: relative;">
+              <label for="l_email">Email</label>
+              <input type="email" name="email" id="l_email" class="form-control mb-1" placeholder="someone@something.domain" required>
+              
+              
+              
+            </div>
+            <div class="form-group pb-3" style="position: relative;">
+              <label for="l_password">Password</label>
+              <input type="password" name="password" id="l_password" class="form-control mb-1" placeholder="*******************" required>
+              <a href="#forgotPassword" style="display:block; position: absolute; right: 0;" title="Fill Email Field and Click it">
+                Forgot Password?
+              </a>
+            </div>
+            <div class="form-group pt-2">
+              <button class="btn btn-info form-control">Login</button>
+            </div>
+            <div class="form-group text-center pt-2 social-login">
+              <h6>OR Continue with</h6>
+              <a href="#" class="google"> <i class="fa fa-google-plus fa-lg"></i> </a>
+              <a href="#" class="facebook"> <i class="fa fa-facebook fa-lg"></i> </a>
+              <a href="#" class="twitter"> <i class="fa fa-twitter fa-lg"></i> </a>
+              <a href="#" class="github"> <i class="fa fa-github fa-lg"></i> </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Registeration Modal -->
+  <div class="modal fade" id="register">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content form-wrapper">
+        <div class="close-box" data-dismiss="modal">
+          <i class="fa fa-times fa-2x"></i>
+        </div>
+        <div class="container-fluid mt-5">
+          <form action="index/signup" method="post" id="RegisterationForm">
+            <div class="form-group text-center pb-2">
+              <h4>Registration Form</h4>
+            </div>
+            <div class="form-row">
+              <div class="form-group col">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Jhon Doe" required>
+              </div>
+             
+            </div>
+            <div class="form-group" style="position:relative;">
+              <label for="email">Email</label>
+              <input type="email" name='email' id="email" class="form-control mb-1" placeholder="jhonedoe@gmail.com" required>
+              <a href="#" data-toggle="modal" data-target="#login" style="display:none; position: absolute; right: 0; font-size: 12px;">That's you? Login</a>
+             
+            </div>
+            <div class="form-row mb-1">
+              <div class="form-group col">
+                <label for="password">Password</label>
+                <input type="password" name='password' id="password" class="form-control" placeholder="*******************" required>
+               
+              </div>
+              
+            </div>
+
+            <div class="form-group">
+              <button class="btn btn-info form-control">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+</body>
+</html>

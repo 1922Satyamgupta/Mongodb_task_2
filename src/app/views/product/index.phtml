@@ -1,0 +1,70 @@
+<?php
+?>
+<html>
+	<head>
+<title></title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	</head>
+	<body>
+	<div class="container">
+	<h2 align="center">Products</h2><br />
+	<div class="form-group">
+<form action="/product/register" id="add_name" method="post">
+<div class="table-responsive">
+<table class="table table-bordered" id="dynamic_field">
+    <tr>
+        <td><label for="p_name">Product Name:</label> <input type="text" name="p_name" id="p_name"></td>
+    </tr>
+    <tr>
+        <td><label for="cat_name">Category Name: </label> <input type="text" name="cat_name" id="cat_name"></td>
+    </tr>
+    <tr>
+        <td><label for="price">Product Price:</label> <input type="number" name="price" id="price"></td>
+    </tr>
+    <tr>
+        <td> <label for="stock">Stock:</label> <input type="number" name="stock" id="stock"></td>
+    </tr>
+<tr>
+<td><button type="button" name="add" id="add" class="btn btn-success">Add Metafields</button></td>
+</tr>
+<tr>
+<td><button type="button" name="add2" id="add2" class="btn btn-success">Add Variations</button></td>
+</tr>
+</table>
+<input type="submit" name="submit" id="submit" class="btn btn-info" value="Submit" />
+</div>
+				</form>
+			</div>
+		</div>
+	</body>
+<script>
+$(document).ready(function(){
+	var i=1;
+	$('#add').click(function(){
+	i++;
+	$('#dynamic_field').append('<tr id="row'+i+'"><td><label for="label">Label:</label><input type="text" name=label[] placeholder="label" class="form-control name_list" /><br><label for="value">Value:</label><input type="text" name=value[] placeholder="value" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+	});
+	
+$(document).on('click', '.btn_remove', function(){
+var button_id = $(this).attr("id"); 
+$('#row'+button_id+'').remove();
+	});
+});
+</script>
+<script>
+    $(document).ready(function(){
+	var i=1;
+	$('#add2').click(function(){
+	i++;
+	$('#dynamic_field').append('<tr id="row'+i+'"><td><label for="label">Attribute Name:</label><input type="text" name=attr_name[] placeholder="attribute_name" class="form-control name_list" /><br><label for="attr_val">Attribute Value:</label><input type="text" name=attr_value[] placeholder="attribute value" class="form-control name_list" /></td><td><button type="button" name="remove2" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+	});
+	
+$(document).on('click', '.btn_remove2', function(){
+var button_id = $(this).attr("id"); 
+$('#row'+button_id+'').remove();
+	});
+});
+</script>
+</html>
