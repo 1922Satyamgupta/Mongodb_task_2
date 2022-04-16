@@ -80,7 +80,9 @@ class ProductController extends Controller
             $result->variation[$p]["attr_value"] = $this->request->get('attr_value') ;
         }
         $save = $collection->updateOne(["_id" => new \MongoDB\BSON\ObjectID($id)], ['$set'=>$result]);
+        // $this->response->redirect('product/view');
     }
+
 
 }
 
