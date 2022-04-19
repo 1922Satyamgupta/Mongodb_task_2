@@ -36,7 +36,7 @@ class OrderController extends Controller
         $total_price = $price * $quanti;
 
         $contact_no = $this->request->get('contact_no');
-        $date = date("d.m.y");
+        $date = date("d.m.Y");
         $result = $collection->insertOne(['pro_name' => $pro_name, 'variate' => $variate, 'address' => $address, 'cust_name' => $cust_name, 'quanti' => $quanti, 'email' => $email, 'contact' => $contact_no, 'Total_price' => $total_price, 'order_status' => $order_status, 'date' => $date]);
 
         $this->response->redirect('order/view');
@@ -86,7 +86,7 @@ class OrderController extends Controller
             $filter_status = array(
                 "order_status" => $status_choose
             );
-            $filter_by_status = $this->mongo->orders->find($filter_status);
+            $filter_by_status = $this->mongo->demo->order->find($filter_status);
             $this->view->order = $filter_by_status;
         }
 
@@ -95,20 +95,43 @@ class OrderController extends Controller
 
             if ($date == 'today') {
                 $filter_date = array(
-                    "order_date" => date('d/m/y')
+                    "date" => date('d.m.Y')
                 );
-                $filter_by_date = $this->mongo->orders->find($filter_date);
+                $filter_by_date = $this->mongo->demo->order->find($filter_date);
                 $this->view->order = $filter_by_date;
             }
             if ($date == "this_week") {
-                $start_date = date("d/m/y", strtotime("-1 week"));
-                $end_date = date("d/m/y");
-                $orders = array('order_date' => ['$gte' => $start_date, '$lte' => $end_date]);
-                $orders = $this->mongo->orders->find($orders);
+                $start_date = date("d.m.Y", strtotime("this week"));
+                $end_date = date("d.m.y");
+                $orders = array('date' => ['$gte' => $start_date, '$lte' => $end_date]);
+                $orders = $this->mongo->demo->order->find($orders);
                 $this->view->order = $orders;
             }
-        } else {
-            $this->view->order = $data;
+            if ($date == "this_month") {
+                $start_date = date("d.m.Y", strtotime("first day of this month"));
+                $end_date = date("d.m.Y");
+                $orders = array('date' => ['$gte' => $start_date, '$lte' => $end_date]);
+                $orders = $this->mongo->demo->order->find($orders);
+                $this->view->order = $orders;
+            }
+
+            if ($date == "custom") {
+                $html = '<div>
+                  <input type="text" name="start_date" placeholder="Start Date"><br>
+                  <input type="text" name="end_date" placeholder="End Date">
+                  </div>';
+                $this->view->html = $html;
+            }
+            if ($this->request->getPost('custom')) {
+                $start_date = $this->request->getPost('start_date');
+                $end_date = $this->request->getPost('end_date');
+                $orders = array('date' => ['$gte' => $start_date, '$lte' => $end_date]);
+                $orders = $this->mongo->demo->order->find($orders);
+                $this->view->demo->order = $orders;
+            }
+            else {
+            $this->view->order = $result;
         }
     }
+}
 }

@@ -137,9 +137,18 @@
                             <option value="this_week">This Week</option>
                             <option value="this_month">This Month</option>
                             <option value="custom">Custom</option>
+                           
                         </select>
+                     </div>
+                     <div class="ml-3">
+                        <?php if (isset($html)) {
+                            echo $html; ?>
+                            <input type="submit" name="custom" class="btn btn-primary mt-1" value="Check Orders">
+                        <?php } ?>
                     </div>
-                </form>
+                  </form>
+      
+               
     
 
    <thead>
@@ -188,4 +197,9 @@
    </tbody></form>
 </table>
 	</body>
+   <script>
+      function myFunction() {
+  document.getElementById("demo").innerHTML = "Hello World";
+}
+   </script>
 </html>
